@@ -7,38 +7,47 @@ estará en el archivo db.py
 2. La URI de las colecciones de Postman usada para el proyecto está en [Postman-platzi-mongo](https://www.getpostman.com/collections/ffcbfb5c8d5cd2dc52d2)
 3. Importar colección dentro de Postman [Instrucciones](https://learning.getpostman.com/docs/postman/collections/data_formats/#exporting-and-importing-postman-data)
 
-## Instalar Anaconda 
-La forma más simple de ejecutar el proyecto es instalando [Anaconda](https://www.anaconda.com/distribution/).
+## Instalar Docker y Docker Compose 
+Se utilza la guía de instalación oficial de [Docker](https://www.docker.com/get-started) y [docker-compose](https://docs.docker.com/compose/install/).
 
-Con Anaconda instalado de manera correcta, navegar hasta el directorio del proyecto
-y ejecutar: 
+## Clonar repositorio y ubicarse en el directorio principal
 ```
-# navegar hasta el directorio del proyecto
+git clone https://github.com/chunfer/platzi-mongo.git
 cd platzi-mongo
-# crear un nuevo ambiente
-conda create --name platzi-mongo
-# activar el ambiente 
-conda activate platzi-mongo
-# para desactivar el ambiente
-conda deactivate
-```
-Si usas Python frecuentemente y tienes una versión 3.3+ no es necesario que 
-instales Anaconda, crea un ambiente virtual con venv o virtualenv y sigue con 
-el paso de instalar las dependencias.
-## Instalar dependenias del proyecto
-Con el ambiente activado, instalar las dependencias:
-```
-pip install -r requirements.txt
-```
-## Variables de entorno necesarias para ejecutar el proyecto
-Asegurate de reemplazar el valor de PLATZI_DB_URI por la URI de tu cluster en MongoDB Atlas
-```
-export FLASK_APP=platzi-api
-export FLASK_ENV=development 
-export PLATZI_DB_URI="MONGO-URI"
 ```
 
-## Iniciar el servidor de platzi-mongo
+## Crear archivo de variables de ambiente
+Para este proceso solo se copia el archivo ```.env.example``` y se crea el archivo ```.env```:
 ```
-flask run
+cp .env.example .env
 ```
+## Modificar variables de ambiente
+Dentro del archivo ```.env``` se debe modificar los siguientes valores:
+```
+USER=<TU_USUARIO>
+PASSWORD=<TU_CONTRASEÑA>
+ATLAS_URI=<LA_URI_DE_ATLAS>
+```
+
+## Utilizar docker-compose para manejar el container
+Para iniciar la aplicación se debe ejecutar el siguiente comando:
+```
+docker-compose up -d
+```
+
+De esta manera se ejecutará un servidor de desarrollo apuntando a http://localhost:5000 o http://<IP del equipo>:5000. 
+
+NOTA: Al modificar los archivos .py si se refresca de manera automática en el container.
+
+Si se desea ver los logs del servicio se recomienda usar el siguiente comando:
+```
+docker-compose logs -f app
+```
+Si se desea dar de baja al servidor usar el siguiente comando:
+```
+docker-compose down
+```
+
+## Recomendaciones
+
+Seguir el curso de [Platzi](https://platzi.com/clases/docker/) para Docker.
