@@ -35,7 +35,7 @@ Para iniciar la aplicación se debe ejecutar el siguiente comando:
 docker-compose up -d
 ```
 
-De esta manera se ejecutará un servidor de desarrollo apuntando a http://localhost:5000 o http://<IP del equipo>:5000. 
+De esta manera se ejecutará un servidor de desarrollo apuntando a http://localhost:5000 o http://<TU_IP>:5000. 
 
 NOTA: Al modificar los archivos .py si se refresca de manera automática en el container.
 
